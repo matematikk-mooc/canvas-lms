@@ -164,7 +164,9 @@ namespace :js do
           end
         end
 
-        begin
+        unless File.exists?('./script/build')
+          puts "Warning: no script/build found for #{app_name}"
+        else
           puts "\tRunning 'npm run build'..."
           output = `./script/build`
           unless $?.exitstatus == 0
